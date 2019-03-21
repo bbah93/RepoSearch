@@ -22,7 +22,7 @@ object NetworkClient {
                 .addInterceptor(interceptor)
                 .connectTimeout(100, TimeUnit.SECONDS)
                 .readTimeout(100, TimeUnit.SECONDS)
-                .build()
+                 .build()
             //Client is used in retrofit instance
             retrofit = Retrofit.Builder()
                 .client(client)
