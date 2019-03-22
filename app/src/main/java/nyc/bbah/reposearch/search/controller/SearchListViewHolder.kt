@@ -9,8 +9,7 @@ import nyc.bbah.reposearch.model.Items
 class SearchListViewHolder(itemView: View?, private val listNavigator: ListNavigator): RecyclerView.ViewHolder(itemView!!){
 
     fun onBind(items: Items) {
-        val img_URL = items.avatar_url
-        itemView.orgtext.text = items.url
+        itemView.orgtext.text = items.full_name
 
         itemView.setOnClickListener {
             listNavigator.openWebView(items.html_url)
