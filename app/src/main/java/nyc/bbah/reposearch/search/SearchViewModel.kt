@@ -2,7 +2,7 @@ package nyc.bbah.reposearch.search
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.Disposable
 import nyc.bbah.reposearch.model.Items
 import nyc.bbah.reposearch.network.GithubService
@@ -26,13 +26,16 @@ class SearchViewModel : ViewModel() {
         }
         return orgs
     }
-
+    //make call for search query,
+    // then grab the items in response body
+    // and sort the items in a list by stars
     private fun loadOrgList(searchQuery: String) {
        disposable = searchRepository
             .orgListCall(searchQuery)
            .map { it.items }
            .flattenAsObservable { it }
            .sorted { items1, items2 ->
+               //sort items by the star count
                items1.stargazers_count - items2.stargazers_count
            }
            .toList()
@@ -45,6 +48,7 @@ class SearchViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+        //when view model is finished dispose of our Single operation
         disposable?.dispose()
     }
 }

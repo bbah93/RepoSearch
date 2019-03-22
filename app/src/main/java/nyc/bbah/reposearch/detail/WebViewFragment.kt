@@ -17,14 +17,19 @@ class WebViewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
+
         val rootView = inflater.inflate(R.layout.fragment_web_view, container, false)
+
         val webView = rootView.findViewById<WebView>(R.id.webview)
         val webSettings = webView.settings
+
         webSettings.javaScriptEnabled
+        //grab url from bundle
         val urlData = arguments
         val urlString = urlData!!.getString("page_URL")
 
         webView.loadUrl(urlString)
+
         return rootView
     }
 }

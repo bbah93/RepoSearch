@@ -5,6 +5,7 @@ import android.os.Bundle
 import nyc.bbah.reposearch.R
 import nyc.bbah.reposearch.inTransaction
 
+//container activity for fragments
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

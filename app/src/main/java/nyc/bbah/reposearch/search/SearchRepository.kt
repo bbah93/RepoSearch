@@ -6,7 +6,7 @@ import nyc.bbah.reposearch.network.GithubService
 
 class SearchRepository(private val githubService: GithubService){
 
-    //call for a list of organizations on Github in RxJava Observable
+    //call for a Org JSON on Github in RxJava Single
     fun orgListCall(orgQuery: String): Single<Org> {
         return githubService.fetchOrgRepos("org:$orgQuery")
     }

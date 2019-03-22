@@ -45,7 +45,7 @@ class  SearchFragment : Fragment() {
                             }
                             is SearchViewModel.NetworkResult.Error -> {
                                 showError()
-                                Log.d("Failed Call: ", networkResults.throwable.toString())
+                                Log.d("FAILED Call: ", networkResults.throwable.toString())
                             }
                         }
                     }
