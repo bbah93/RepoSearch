@@ -10,7 +10,7 @@ import nyc.bbah.reposearch.network.GithubService
 class SearchViewModel : ViewModel() {
 
     private val orgs: MutableLiveData<NetworkResult<List<Items>>> = MutableLiveData()
-    private val searchRepository = SearchRepository(GithubService.AiUtil.githubService)
+    var searchRepository = SearchRepository(GithubService.AiUtil.githubService)
     private var disposable: Disposable ?= null
 
     //Safe handling of Network Operations
