@@ -18,6 +18,7 @@ class ListNavigator(private val activity: FragmentActivity) {
             }
 
             replace(R.id.fragment_container, webViewFragment)
+            addToBackStack("Web View")
         }
     }
 }

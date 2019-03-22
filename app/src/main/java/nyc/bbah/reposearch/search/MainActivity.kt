@@ -14,8 +14,6 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.inTransaction {
                 replace(R.id.fragment_container, SearchFragment())
-                    .addToBackStack("WebView Fragment")
-
             }
         }
     }
