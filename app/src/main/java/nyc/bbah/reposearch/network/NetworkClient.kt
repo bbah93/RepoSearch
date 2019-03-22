@@ -13,7 +13,7 @@ object NetworkClient {
     //factory method
     private var retrofit: Retrofit? = null
 
-    fun getClient(baseUrl: String): Retrofit? {
+    fun getClient(baseUrl: String): Retrofit {
         if (retrofit == null) {
             // create OkHttp client
             val interceptor = HttpLoggingInterceptor()
@@ -32,7 +32,6 @@ object NetworkClient {
                 .build()
         }
 
-        return retrofit
-
+        return retrofit!!
     }
 }

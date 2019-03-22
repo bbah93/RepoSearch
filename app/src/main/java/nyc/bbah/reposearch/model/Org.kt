@@ -1,7 +1,5 @@
 package nyc.bbah.reposearch.model
 
-data class Org(val login: String,val id: Int,
-               val avatar_url: String,
-               val url: String,
-               val html_url: String,
-               val score: Double)
+data class Org(val total_count: Int,
+               val incomplete_results: Boolean,
+               val items: List<Items>)

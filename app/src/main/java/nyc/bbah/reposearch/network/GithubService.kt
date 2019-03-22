@@ -1,20 +1,21 @@
 package nyc.bbah.reposearch.network
 
 import io.reactivex.Observable
+import io.reactivex.Single
 import nyc.bbah.reposearch.model.Org
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface GithubService {
 
-    @GET("search/users?q=type:org+{organization}")
-    fun fetchOrgRepos(@Path("organization") organization: String?): Observable<List<Org>>
+    //?q=type:org+{organization}
+    @GET("search/repositories")
+    fun fetchOrgRepos(@Query(value = "q", encoded = true) name: String): Single<Org>
 
     //allows us to use as reference when makig call
-    object AiUtil{
+    object AiUtil {
         private const val BASE_URL = "https://api.github.com/"
         val githubService: GithubService get() = NetworkClient
-            .getClient(BASE_URL)!!
+            .getClient(BASE_URL)
             .create(GithubService::class.java)
     }
 }
