@@ -33,8 +33,9 @@ class SearchViewModel : ViewModel() {
        disposable = searchRepository
             .orgListCall(searchQuery)
            .map { it.items }
-           .flattenAsObservable { it }
-           .sorted { items1, items2 ->
+           .flattenAsObservable {
+               it
+           }.sorted { items1, items2 ->
                //sort items by the star count
                items1.stargazers_count - items2.stargazers_count
            }

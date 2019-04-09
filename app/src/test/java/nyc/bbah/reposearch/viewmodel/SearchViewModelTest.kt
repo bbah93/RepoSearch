@@ -18,12 +18,14 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class SearchViewModelTest{
 
+    //makes background tasks run by Architecture Components run synchronously
     @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
+    val taskExecutorRule = InstantTaskExecutorRule()
 
     val repository = mock<SearchRepository>()
 
     val viewModel: SearchViewModel = SearchViewModel().apply {
+        //access the repositiory property in viewModel and initializes inside of also block
         searchRepository = repository
     }
 
@@ -32,13 +34,15 @@ class SearchViewModelTest{
         val orgQuery = "Uber"
         val org = mock<Org>()
 
-        //when we make a test call just return our mock org
+        //establishes a stubbing operation where we make a test call to return the specified mock org
         whenever(repository.orgListCall(orgQuery)).thenReturn(Single.just(org))
 
-        viewModel.getOrgs(orgQuery)
+        val data = viewModel.getOrgs(orgQuery)
 
         verify(repository).orgListCall(orgQuery)
-        val networkResult = viewModel.getOrgs(orgQuery).value
+
+
+        val networkResult = data.value
         assert(networkResult is SearchViewModel.NetworkResult<List<Items>>)
         val success = networkResult as SearchViewModel.NetworkResult.Success<List<Items>>
         assert(success.data == org.items)
